@@ -130,7 +130,7 @@ namespace DoorSensor
             int delay;
             if (_storeStatus == StoreStatus.Open)
             {
-                delay = _random.Next(500, 10000);
+                delay = _random.Next(500, 6000);
             }
             else
             {
