@@ -136,9 +136,9 @@ var notificationHandler = (function () {
         return '#' + ('000000' + h.toString(16)).slice(-6);
     }
 
-    function updateTotalChart() {
+    function updateTotalCustomerCountChart() {
         var totalCustomerCountChart = new Chart(totalGraphContext, {
-            type: 'line',               // 'line', 'bar', 'bubble' and 'scatter' types are supported
+            type: 'line',
             data: {
                 datasets: [{
                     label: 'Total customer-count',
@@ -147,12 +147,20 @@ var notificationHandler = (function () {
                     borderColor: ['rgba(0,99,132,1)'],
                     borderWidth: 2,
                     fill: true,
-                    pointRadius: 2
+                    pointRadius: 3                    
                 }]
             },
             options: {
                 legend: {
                     display: false
+                },
+                tooltips: {
+                    enabled: false
+                },
+                layout: {
+                    padding: {
+                        left: 50
+                    }
                 },
                 scales: {
                     xAxes: [{
@@ -187,7 +195,7 @@ var notificationHandler = (function () {
         loadMallMap();
         initializeCustomerGraph();
         updateCustomerGraph();
-        updateTotalChart();
+        updateTotalCustomerCountChart();
         setupSignalR();
     };
 
