@@ -75,7 +75,7 @@ var notificationHandler = (function () {
         doorSensors.forEach(function (sensor) {
             drawDoorSensor(sensor.x, sensor.y, sensorSize, sensor.storeStatus == 0 ? sensorIdleColorClosed : sensorIdleColorOpen, true);   
             mallMapContext.fillStyle = "#000000";
-            mallMapContext.fillText(sensor.id, sensor.x - 5, sensor.y + 15);
+            mallMapContext.fillText(sensor.id, sensor.x - 8, sensor.y + 16);
         });
     }
 
@@ -100,8 +100,6 @@ var notificationHandler = (function () {
     function initializeCustomerGraph() {
         var x = graphLeft;
         customerGraphContext.clearRect(0, 0, 1222, 250);
-        customerGraphContext.fillStyle = "#000000";
-        customerGraphContext.fillText("Store:", 150, 190);
         customerGraphContext.strokeStyle = "#000000";
         customerGraphContext.lineWidth = 0.25;
         doorSensors.forEach(function (sensor) {
@@ -149,7 +147,7 @@ var notificationHandler = (function () {
                     borderColor: ['rgba(0,99,132,1)'],
                     borderWidth: 2,
                     fill: true,
-                    pointRadius: 0
+                    pointRadius: 2
                 }]
             },
             options: {
@@ -158,14 +156,13 @@ var notificationHandler = (function () {
                 },
                 scales: {
                     xAxes: [{
-                        type: 'realtime',        // x axis will auto-scroll from right to left
-                        realtime: {              // per-axis options
+                        type: 'realtime',       // x axis will auto-scroll from right to left
+                        realtime: {             // per-axis options
                             duration: 50000,    // data in the past x ms will be displayed
-                            refresh: 2000,       // onRefresh callback will be called every x ms
-                            delay: 2000,         // delay of x ms, so upcoming values are known before plotting a line
-                            pause: false,        // chart is not paused
-                            ttl: 1800000,      // data will be automatically deleted as it disappears off the chart
-                            // a callback to update datasets
+                            refresh: 2000,      // onRefresh callback will be called every x ms
+                            delay: 2000,        // delay of x ms, so upcoming values are known before plotting a line
+                            pause: false,       // chart is not paused
+                            ttl: 3600000,       // data will be automatically deleted as it disappears off the chart
                             onRefresh: function (chart) {
                                 var totalCustomerCount = 0;
                                 doorSensors.forEach(function (sensor) {
@@ -179,7 +176,7 @@ var notificationHandler = (function () {
                 },
                 plugins: {
                     streaming: {            // per-chart option
-                        frameRate: 30       // chart is drawn x times every second
+                        frameRate: 20       // chart is drawn x times every second
                     }
                 }
             }
