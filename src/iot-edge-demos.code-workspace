@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "./MallDashboard"
+		},
+		{
+			"path": "./EdgeModules"
+		},
+		{
+			"path": "./Functions"
+		}
+	],
+	"settings": {
+		"azure-iot-edge.defaultPlatform": {
+			"platform": "amd64",
+			"alias": null
+		}
+	}
+}

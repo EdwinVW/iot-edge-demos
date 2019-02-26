@@ -1,0 +1,245 @@
+{
+  "$schema-template": "1.0.0",
+  "modulesContent": {
+    "$edgeAgent": {
+      "properties.desired": {
+        "schemaVersion": "1.0",
+        "runtime": {
+          "type": "docker",
+          "settings": {
+            "minDockerVersion": "v1.25",
+            "loggingOptions": "",
+            "registryCredentials": {
+              "ewiotedge": {
+                "username": "$CONTAINER_REGISTRY_USERNAME_ewiotedge",
+                "password": "$CONTAINER_REGISTRY_PASSWORD_ewiotedge",
+                "address": "ewiotedge.azurecr.io"
+              }
+            }
+          }
+        },
+        "systemModules": {
+          "edgeAgent": {
+            "type": "docker",
+            "settings": {
+              "image": "mcr.microsoft.com/azureiotedge-agent:1.0",
+              "createOptions": {}
+            }
+          },
+          "edgeHub": {
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "mcr.microsoft.com/azureiotedge-hub:1.0",
+              "createOptions": {
+                "HostConfig": {
+                  "PortBindings": {
+                    "5671/tcp": [
+                      {
+                        "HostPort": "5671"
+                      }
+                    ],
+                    "8883/tcp": [
+                      {
+                        "HostPort": "8883"
+                      }
+                    ],
+                    "443/tcp": [
+                      {
+                        "HostPort": "443"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "modules": {
+          "DoorSensor0": {
+            "version": "1.0",
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "${MODULES.DoorSensor}",
+              "createOptions": {}
+            }
+          },
+          "DoorSensor1": {
+            "version": "1.0",
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "${MODULES.DoorSensor}",
+              "createOptions": {}
+            }
+          },
+          "DoorSensor2": {
+            "version": "1.0",
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "${MODULES.DoorSensor}",
+              "createOptions": {}
+            }
+          },
+          "DoorSensor3": {
+            "version": "1.0",
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "${MODULES.DoorSensor}",
+              "createOptions": {}
+            }
+          },
+          "DoorSensor4": {
+            "version": "1.0",
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "${MODULES.DoorSensor}",
+              "createOptions": {}
+            }
+          },
+          "DoorSensor5": {
+            "version": "1.0",
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "${MODULES.DoorSensor}",
+              "createOptions": {}
+            }
+          },
+          "DoorSensor6": {
+            "version": "1.0",
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "${MODULES.DoorSensor}",
+              "createOptions": {}
+            }
+          },
+          "DoorSensor7": {
+            "version": "1.0",
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "${MODULES.DoorSensor}",
+              "createOptions": {}
+            }
+          },
+          "DoorSensor8": {
+            "version": "1.0",
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "${MODULES.DoorSensor}",
+              "createOptions": {}
+            }
+          },
+          "DoorSensor9": {
+            "version": "1.0",
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "${MODULES.DoorSensor}",
+              "createOptions": {}
+            }
+          }                            
+        }
+      }
+    },
+    "$edgeHub": {
+      "properties.desired": {
+        "schemaVersion": "1.0",
+        "routes": {
+          "DoorSensorToIoTHub": "FROM /messages/modules/* INTO $upstream"
+        },
+        "storeAndForwardConfiguration": {
+          "timeToLiveSecs": 7200
+        }
+      }
+    },
+    "DoorSensor0": {
+      "properties.desired":{
+          "SensorId":0,
+          "MaxCapacity":15,
+          "StoreStatus":"Open"
+      }
+    },
+    "DoorSensor1": {
+      "properties.desired":{
+          "SensorId":1,
+          "MaxCapacity":12,
+          "StoreStatus":"Open"
+      }
+    },
+    "DoorSensor2": {
+      "properties.desired":{
+          "SensorId":2,
+          "MaxCapacity":25,
+          "StoreStatus":"Open"
+      }
+    },
+    "DoorSensor3": {
+      "properties.desired":{
+          "SensorId":3,
+          "MaxCapacity":25,
+          "StoreStatus":"Open"
+      }
+    },
+    "DoorSensor4": {
+      "properties.desired":{
+          "SensorId":4,
+          "MaxCapacity":10,
+          "StoreStatus":"Open"
+      }
+    },
+    "DoorSensor5": {
+      "properties.desired":{
+          "SensorId":5,
+          "MaxCapacity":15,
+          "StoreStatus":"Open"
+      }
+    },
+    "DoorSensor6": {
+      "properties.desired":{
+          "SensorId":6,
+          "MaxCapacity":20,
+          "StoreStatus":"Open"
+      }
+    },
+    "DoorSensor7": {
+      "properties.desired":{
+          "SensorId":7,
+          "MaxCapacity":35,
+          "StoreStatus":"Open"
+      }
+    },
+    "DoorSensor8": {
+      "properties.desired":{
+          "SensorId":8,
+          "MaxCapacity":15,
+          "StoreStatus":"Open"
+      }
+    },
+    "DoorSensor9": {
+      "properties.desired":{
+          "SensorId":9,
+          "MaxCapacity":30,
+          "StoreStatus":"Open"
+      }
+    }                            
+  }
+}

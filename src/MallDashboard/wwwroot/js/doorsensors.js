@@ -1,0 +1,46 @@
+var topRow = [
+    { id: 0, customerCount: 0, x: 184, y: 177 },
+    { id: 1, customerCount: 0, x: 190, y: 238 },
+    { id: 2, customerCount: 0, x: 255, y: 243 },
+    { id: 3, customerCount: 0, x: 305, y: 243 },
+    { id: 4, customerCount: 0, x: 342, y: 243 },
+    { id: 5, customerCount: 0, x: 367, y: 243 },
+    { id: 6, customerCount: 0, x: 395, y: 228 },
+    { id: 7, customerCount: 0, x: 484, y: 215 },
+    { id: 8, customerCount: 0, x: 538, y: 215 },
+    { id: 9, customerCount: 0, x: 580, y: 215 },
+    { id: 10, customerCount: 0, x: 690, y: 168 },
+    { id: 11, customerCount: 0, x: 735, y: 160 },
+    { id: 12, customerCount: 0, x: 825, y: 155 },
+    { id: 13, customerCount: 0, x: 945, y: 155 },
+    { id: 14, customerCount: 0, x: 1065, y: 155 },
+];
+
+var bottomRow = [
+    { id: 15, customerCount: 0, x: 182, y: 295 },
+    { id: 16, customerCount: 0, x: 248, y: 295 },
+    { id: 17, customerCount: 0, x: 280, y: 295 },
+    { id: 18, customerCount: 0, x: 315, y: 295 },
+    { id: 19, customerCount: 0, x: 342, y: 295 },
+    { id: 20, customerCount: 0, x: 368, y: 295 },
+    { id: 21, customerCount: 0, x: 392, y: 295 },
+    { id: 22, customerCount: 0, x: 415, y: 295 },
+    { id: 23, customerCount: 0, x: 437, y: 295 },
+    { id: 24, customerCount: 0, x: 460, y: 281 },
+    { id: 25, customerCount: 0, x: 512, y: 266 },
+    { id: 26, customerCount: 0, x: 538, y: 266 },
+    { id: 27, customerCount: 0, x: 574, y: 266 },
+    { id: 28, customerCount: 0, x: 611, y: 266 },
+    { id: 29, customerCount: 0, x: 645, y: 266 },
+    { id: 30, customerCount: 0, x: 695, y: 240 },
+    { id: 31, customerCount: 0, x: 723, y: 231 },
+    { id: 32, customerCount: 0, x: 746, y: 222 },
+    { id: 33, customerCount: 0, x: 788, y: 208 },
+    { id: 34, customerCount: 0, x: 865, y: 200 },
+    { id: 35, customerCount: 0, x: 920, y: 200 },
+    { id: 36, customerCount: 0, x: 955, y: 200 },
+    { id: 37, customerCount: 0, x: 996, y: 200 },
+    { id: 38, customerCount: 0, x: 1070, y: 200 }
+]
+
+var doorSensors = topRow.concat(bottomRow);
