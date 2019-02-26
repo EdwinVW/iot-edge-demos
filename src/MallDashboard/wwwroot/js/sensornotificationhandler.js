@@ -26,7 +26,8 @@ var notificationHandler = (function () {
     };
 
     function setupSignalR() {
-        // signalRInfoKey variable must be created in a separate .js file and filled with the default function key
+        // signalRInfoKey variable must be created in a separate .js file called secrets.js and 
+        // filled with the default function key that you can obtain from the Azure portal
         var signalRInfoUrl = "https://ew-iot.azurewebsites.net/api/SignalRInfo?code=" + signalRInfoKey;
 
         fetch(signalRInfoUrl)

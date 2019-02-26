@@ -1,0 +1,1 @@
+var signalRInfoKey = "<function key from the Azure portal>";
