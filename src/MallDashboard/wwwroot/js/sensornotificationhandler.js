@@ -6,6 +6,7 @@ var notificationHandler = (function () {
     mallMapContext.font = "10px Arial";
     var customerGraphContext = document.getElementById('customerGraph').getContext("2d");
     customerGraphContext.font = "10px Arial";
+    var totalGraphContext = document.getElementById("totalGraph").getContext("2d");
 
     const sensorSize = 6;
     const notificationSize = 5;
@@ -14,6 +15,7 @@ var notificationHandler = (function () {
     const sensorInColor = "#00FF00";
     const sensorOutColor = "#FF0000";
     const graphLeft = 200;
+
     var connection;
 
     function loadMallMap() {
@@ -45,7 +47,7 @@ var notificationHandler = (function () {
                 // setup signalr callback
                 connection.on("SendNotification", function (message) {
                     var notification = JSON.parse(message);
-                    displayNotification(notification);
+                    handleNotification(notification);
                 });
 
                 // start signalr connection
@@ -58,7 +60,7 @@ var notificationHandler = (function () {
             });
     };
 
-    function displayNotification(notification) {
+    function handleNotification(notification) {
         var sensorId = parseInt(notification.SensorId);
         var customerCount = parseInt(notification.CustomerCount);
         var maxCapacity = parseInt(notification.MaxCapacity);
@@ -97,14 +99,14 @@ var notificationHandler = (function () {
 
     function initializeCustomerGraph() {
         var x = graphLeft;
-        customerGraphContext.clearRect(0, 0, 1222, 300);
+        customerGraphContext.clearRect(0, 0, 1222, 250);
         customerGraphContext.fillStyle = "#000000";
-        customerGraphContext.fillText("Store:", 150, 265);
+        customerGraphContext.fillText("Store:", 150, 190);
         customerGraphContext.strokeStyle = "#000000";
         customerGraphContext.lineWidth = 0.25;
         doorSensors.forEach(function (sensor) {
-            customerGraphContext.fillText(sensor.id, x, 265);
-            customerGraphContext.strokeRect(x, 10, 10, 231);
+            customerGraphContext.fillText(sensor.id, x, 190);
+            customerGraphContext.strokeRect(x, 10, 10, 160);
             x += 20;
         });
     }
@@ -112,10 +114,10 @@ var notificationHandler = (function () {
     function updateCustomerGraph() {
         var x = graphLeft;
         doorSensors.forEach(function (sensor) {
-            customerGraphContext.clearRect(x+ 1, 11, 8, 229);
-            var barLength = parseInt((sensor.customerCount / sensor.maxCapacity) * 229);
+            customerGraphContext.clearRect(x+ 1, 11, 8, 159);
+            var barLength = parseInt((sensor.customerCount / sensor.maxCapacity) * 159);
             var percentage = parseInt((sensor.customerCount / sensor.maxCapacity) * 100);
-            var y = 229 - barLength;
+            var y = 159 - barLength;
             customerGraphContext.fillStyle = perc2Color(percentage);
             customerGraphContext.fillRect(x + 1, y + 11, 8, barLength);
             x += 20;
@@ -136,10 +138,59 @@ var notificationHandler = (function () {
         return '#' + ('000000' + h.toString(16)).slice(-6);
     }
 
+    function updateTotalChart() {
+        var totalCustomerCountChart = new Chart(totalGraphContext, {
+            type: 'line',               // 'line', 'bar', 'bubble' and 'scatter' types are supported
+            data: {
+                datasets: [{
+                    label: 'Total customer-count',
+                    data: [],            
+                    backgroundColor: ['rgba(0, 99, 132, 0.2)'],
+                    borderColor: ['rgba(0,99,132,1)'],
+                    borderWidth: 2,
+                    fill: true,
+                    pointRadius: 0
+                }]
+            },
+            options: {
+                legend: {
+                    display: false
+                },
+                scales: {
+                    xAxes: [{
+                        type: 'realtime',        // x axis will auto-scroll from right to left
+                        realtime: {              // per-axis options
+                            duration: 50000,    // data in the past x ms will be displayed
+                            refresh: 2000,       // onRefresh callback will be called every x ms
+                            delay: 2000,         // delay of x ms, so upcoming values are known before plotting a line
+                            pause: false,        // chart is not paused
+                            ttl: 1800000,      // data will be automatically deleted as it disappears off the chart
+                            // a callback to update datasets
+                            onRefresh: function (chart) {
+                                var totalCustomerCount = 0;
+                                doorSensors.forEach(function (sensor) {
+                                    totalCustomerCount += sensor.customerCount;
+                                });                             
+                                var data = [{ x: Date.now(), y: totalCustomerCount }];
+                                Array.prototype.push.apply(chart.data.datasets[0].data, data);
+                            }
+                        }
+                    }]
+                },
+                plugins: {
+                    streaming: {            // per-chart option
+                        frameRate: 30       // chart is drawn x times every second
+                    }
+                }
+            }
+        });
+    }
+
     function start() {
         loadMallMap();
         initializeCustomerGraph();
         updateCustomerGraph();
+        updateTotalChart();
         setupSignalR();
     };
 

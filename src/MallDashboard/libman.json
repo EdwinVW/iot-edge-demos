@@ -9,6 +9,34 @@
         "dist/browser/signalr.js",
         "dist/browser/signalr.min.js"
       ]
+    },
+    {
+      "library": "chart.js@2.7.3",
+      "destination": "wwwroot\\lib\\chart.js"
+    },
+    {
+      "library": "chartjs-plugin-streaming@1.7.1",
+      "destination": "wwwroot\\lib\\chartjs-plugin-streaming"
+    },
+    {
+      "library": "moment@2.24.0",
+      "destination": "wwwroot\\lib\\moment"
+    },
+    {
+      "library": "bootstrap@4.3.1",
+      "destination": "wwwroot\\lib\\bootstrap"
+    },
+    {
+      "library": "jquery@3.3.1",
+      "destination": "wwwroot\\lib\\jquery"
+    },
+    {
+      "library": "jquery-validation@1.19.0",
+      "destination": "wwwroot\\lib\\jquery-validation"
+    },
+    {
+      "library": "jquery-validation-unobtrusive@3.2.11",
+      "destination": "wwwroot\\lib\\jquery-validation-unobtrusive"
     }
   ]
 }

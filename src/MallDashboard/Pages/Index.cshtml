@@ -8,11 +8,19 @@
     </div>    
     <div class="row">
         <div class="col-12">
-            <canvas id="customerGraph" width="1222" height="300"></canvas>
+            <canvas id="customerGraph" width="1222" height="200"></canvas>
         </div>
     </div>
+    <div class="row">
+        <div class="col-12">
+            <canvas id="totalGraph" width="1222" height="200"></canvas>
+        </div>
+    </div>    
 </div>
 <script src="~/lib/signalr/dist/browser/signalr.min.js"></script>
+<script src="~/lib/chart.js/dist/Chart.bundle.min.js"></script>
+<script src="~/lib/moment/min/moment.min.js"></script>
+<script src="~/lib/chartjs-plugin-streaming/dist/chartjs-plugin-streaming.min.js"></script>
 <script src="~/js/secrets.js"></script>
 <script src="~/js/doorsensors.js"></script>
 <script src="~/js/sensornotificationhandler.js"></script>
