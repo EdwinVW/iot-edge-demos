@@ -92,7 +92,15 @@ namespace DoorSensor
                     }
 
                     // update customercount
-                    _customerCount += notificationType == NotificationType.CustomerEntered ? 1 : -1;
+                    switch(notificationType)
+                    {
+                        case NotificationType.CustomerEntered:
+                            _customerCount += 1;
+                            break;
+                        case NotificationType.CustomerExited:
+                            _customerCount -= 1;
+                            break;
+                    }
 
                     //create event
                     DoorNotificationEvent e = new DoorNotificationEvent
@@ -130,11 +138,11 @@ namespace DoorSensor
             int delay;
             if (_storeStatus == StoreStatus.Open)
             {
-                delay = _random.Next(500, 6000);
+                delay = _random.Next(500, 12000);
             }
             else
             {
-                delay = _random.Next(500, 2000);
+                delay = _random.Next(500, 5000);
             }
             await Task.Delay(delay, cancellationToken);
         }
@@ -146,7 +154,7 @@ namespace DoorSensor
             {
                 if (_customerCount == 0)
                 {
-                    return null;
+                    return NotificationType.StoreClosed;
                 }
                 notificationType = NotificationType.CustomerExited;
             }
