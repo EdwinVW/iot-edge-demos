@@ -138,11 +138,11 @@ namespace DoorSensor
             int delay;
             if (_storeStatus == StoreStatus.Open)
             {
-                delay = _random.Next(500, 12000);
+                delay = _random.Next(500, 10000);
             }
             else
             {
-                delay = _random.Next(500, 5000);
+                delay = _random.Next(500, 3000);
             }
             await Task.Delay(delay, cancellationToken);
         }
