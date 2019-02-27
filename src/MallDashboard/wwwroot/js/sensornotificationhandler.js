@@ -193,6 +193,12 @@ var notificationHandler = (function () {
                                 Array.prototype.push.apply(chart.data.datasets[0].data, data);
                             }
                         }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            suggestedMax: 25,
+                            beginAtZero:true
+                        }
                     }]
                 },
                 plugins: {
