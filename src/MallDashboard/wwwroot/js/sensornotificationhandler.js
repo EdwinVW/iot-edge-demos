@@ -80,10 +80,23 @@ var notificationHandler = (function () {
     }
 
     function flashDoorSensor(sensor, notificationType) {
-        var flashColor = notificationType == 0 ? sensorInColor : sensorOutColor;
-        drawDoorSensor(sensor.x, sensor.y, notificationSize, flashColor, false)
+        var flashColor;
+        switch(notificationType) {
+            case 0: // CustomerEntered
+                flashColor = sensorInColor;
+              break;
+            case 1: // CustomerExited
+                flashColor = sensorOutColor;
+              break;
+            case 2: // StoreClosed
+                flashColor = sensorIdleColorClosed;
+        }
+
+        drawDoorSensor(sensor.x, sensor.y, notificationSize, flashColor, false);
+
+        var idleColor = sensor.storeStatus == 0 ? sensorIdleColorClosed : sensorIdleColorOpen;
         setTimeout(function () {
-            drawDoorSensor(sensor.x, sensor.y, notificationSize, sensor.storeStatus == 0 ? sensorIdleColorClosed : sensorIdleColorOpen, false);
+            drawDoorSensor(sensor.x, sensor.y, notificationSize, idleColor, false);
         }, 250);
     }
 
