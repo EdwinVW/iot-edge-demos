@@ -14,9 +14,9 @@ var notificationHandler = (function () {
     const sensorIdleColorClosed = "#001111";
     const sensorInColor = "#00FF00";
     const sensorOutColor = "#FF0000";
-    const sensorGraphLeft = 80;
-    const sensorGraphBarWidth = 18;
-    const sensorGraphBarGap = 8;
+    const sensorGraphLeft = 60;
+    const sensorGraphBarWidth = 15;
+    const sensorGraphBarGap = 12;
 
     var connection;
 
