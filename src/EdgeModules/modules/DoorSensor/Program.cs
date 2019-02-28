@@ -40,10 +40,6 @@ namespace DoorSensor
                 // attach a callback for updates to the module twin's desired properties
                 await moduleClient.SetDesiredPropertyUpdateCallbackAsync(OnDesiredPropertiesUpdate, null);
 
-                // store Ids
-                _deviceId = moduleTwin.DeviceId;
-                _moduleId = moduleTwin.ModuleId;
-
                 // start message loop
                 Console.WriteLine($"{DateTime.Now.ToString("yyyyMMdd hh:mm:ss:ffffff")} - Starting message loop ...");
                 var cts = new CancellationTokenSource();
@@ -171,6 +167,10 @@ namespace DoorSensor
 
         private static async Task<ModuleClient> InitAsync()
         {
+            // store Ids
+            _deviceId = Environment.GetEnvironmentVariable("IOTEDGE_DEVICEID");
+            _moduleId = Environment.GetEnvironmentVariable("IOTEDGE_MODULEID");
+
             ITransportSettings[] transportSettings = { new AmqpTransportSettings(TransportType.Amqp_Tcp_Only) };
 
             // Open a connection to the Edge runtime
