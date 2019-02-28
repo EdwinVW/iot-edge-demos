@@ -156,7 +156,37 @@
               "image": "${MODULES.DoorSensor}",
               "createOptions": {}
             }
-          }                            
+          },
+          "DoorSensor10": {
+            "version": "1.0",
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "${MODULES.DoorSensor}",
+              "createOptions": {}
+            }
+          },
+          "DoorSensor11": {
+            "version": "1.0",
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "${MODULES.DoorSensor}",
+              "createOptions": {}
+            }
+          },
+          "DoorSensor12": {
+            "version": "1.0",
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "${MODULES.DoorSensor}",
+              "createOptions": {}
+            }
+          }                                              
         }
       }
     },
@@ -170,76 +200,6 @@
           "timeToLiveSecs": 7200
         }
       }
-    },
-    "DoorSensor0": {
-      "properties.desired":{
-          "SensorId":0,
-          "MaxCapacity":15,
-          "StoreStatus":"Open"
-      }
-    },
-    "DoorSensor1": {
-      "properties.desired":{
-          "SensorId":1,
-          "MaxCapacity":12,
-          "StoreStatus":"Open"
-      }
-    },
-    "DoorSensor2": {
-      "properties.desired":{
-          "SensorId":2,
-          "MaxCapacity":25,
-          "StoreStatus":"Open"
-      }
-    },
-    "DoorSensor3": {
-      "properties.desired":{
-          "SensorId":3,
-          "MaxCapacity":25,
-          "StoreStatus":"Open"
-      }
-    },
-    "DoorSensor4": {
-      "properties.desired":{
-          "SensorId":4,
-          "MaxCapacity":10,
-          "StoreStatus":"Open"
-      }
-    },
-    "DoorSensor5": {
-      "properties.desired":{
-          "SensorId":5,
-          "MaxCapacity":15,
-          "StoreStatus":"Open"
-      }
-    },
-    "DoorSensor6": {
-      "properties.desired":{
-          "SensorId":6,
-          "MaxCapacity":20,
-          "StoreStatus":"Open"
-      }
-    },
-    "DoorSensor7": {
-      "properties.desired":{
-          "SensorId":7,
-          "MaxCapacity":35,
-          "StoreStatus":"Open"
-      }
-    },
-    "DoorSensor8": {
-      "properties.desired":{
-          "SensorId":8,
-          "MaxCapacity":15,
-          "StoreStatus":"Open"
-      }
-    },
-    "DoorSensor9": {
-      "properties.desired":{
-          "SensorId":9,
-          "MaxCapacity":30,
-          "StoreStatus":"Open"
-      }
-    }                            
+    }      
   }
 }

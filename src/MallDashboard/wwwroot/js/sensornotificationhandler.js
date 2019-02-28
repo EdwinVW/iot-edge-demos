@@ -14,7 +14,9 @@ var notificationHandler = (function () {
     const sensorIdleColorClosed = "#001111";
     const sensorInColor = "#00FF00";
     const sensorOutColor = "#FF0000";
-    const graphLeft = 200;
+    const sensorGraphLeft = 80;
+    const sensorGraphBarWidth = 18;
+    const sensorGraphBarGap = 8;
 
     var connection;
 
@@ -111,27 +113,27 @@ var notificationHandler = (function () {
     }
 
     function initializeCustomerGraph() {
-        var x = graphLeft;
+        var x = sensorGraphLeft;
         customerGraphContext.clearRect(0, 0, 1222, 250);
         customerGraphContext.strokeStyle = "#000000";
         customerGraphContext.lineWidth = 0.25;
         doorSensors.forEach(function (sensor) {
-            customerGraphContext.fillText(sensor.id, x, 190);
-            customerGraphContext.strokeRect(x, 10, 10, 160);
-            x += 20;
+            customerGraphContext.fillText(sensor.id, x + 4, 190);
+            customerGraphContext.strokeRect(x, 10, sensorGraphBarWidth, 160);
+            x += sensorGraphBarWidth + sensorGraphBarGap;
         });
     }
 
     function updateCustomerGraph() {
-        var x = graphLeft;
+        var x = sensorGraphLeft;
         doorSensors.forEach(function (sensor) {
-            customerGraphContext.clearRect(x+ 1, 11, 8, 159);
+            customerGraphContext.clearRect(x + 1, 11, sensorGraphBarWidth - 2, 159);
             var barLength = parseInt((sensor.customerCount / sensor.maxCapacity) * 159);
             var percentage = parseInt((sensor.customerCount / sensor.maxCapacity) * 100);
             var y = 159 - barLength;
             customerGraphContext.fillStyle = perc2Color(percentage);
-            customerGraphContext.fillRect(x + 1, y + 11, 8, barLength);
-            x += 20;
+            customerGraphContext.fillRect(x + 1, y + 11, sensorGraphBarWidth - 2, barLength);
+            x += sensorGraphBarWidth + sensorGraphBarGap;
         });
     }
 
