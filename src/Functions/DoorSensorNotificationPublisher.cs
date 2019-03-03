@@ -13,7 +13,7 @@ namespace Functions
     {
         [FunctionName("PublishDoorSensorNotification")]
         public void Run(
-            [IoTHubTrigger("messages/events", Connection = "IOTHUB_EVENTS", ConsumerGroup = "mallmanagement")] EventData iotHubMessage,
+            [IoTHubTrigger("messages/events", Connection = "IOTHUB_EVENTS", ConsumerGroup = "MallManagement")] EventData iotHubMessage,
             [SignalR(HubName = "DoorSensorNotificationsHub")] IAsyncCollector<SignalRMessage> signalRMessages,
             ILogger log)
         {

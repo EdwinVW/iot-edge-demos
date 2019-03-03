@@ -216,6 +216,7 @@ namespace DoorSensor
                 Console.WriteLine();
                 Console.WriteLine("Error when receiving desired property: {0}", ex.Message);
             }
+
             return Task.CompletedTask;
         }
     }
