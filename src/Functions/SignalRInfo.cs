@@ -12,8 +12,7 @@ namespace Functions
         [FunctionName("SignalRInfo")]
         public IActionResult Run(
             [HttpTrigger(AuthorizationLevel.Function)] HttpRequest req,
-            [SignalRConnectionInfo(HubName = "DoorSensorNotificationsHub")] SignalRConnectionInfo connectionInfo,
-            ILogger log)
+            [SignalRConnectionInfo(HubName = "DoorSensorNotificationsHub")] SignalRConnectionInfo connectionInfo)
         {
             return new OkObjectResult(connectionInfo);
         }
