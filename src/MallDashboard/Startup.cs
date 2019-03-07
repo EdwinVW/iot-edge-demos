@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MallDashboard.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -33,8 +32,6 @@ namespace MallDashboard
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-            services.AddSignalR().AddAzureSignalR("Endpoint=https://ew-iot.service.signalr.net;AccessKey=meB7XXzsbazoD6f067e4LbW8AdcCj4JLOHPVLKK6m5o=;Version=1.0;");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,12 +51,6 @@ namespace MallDashboard
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
-            app.UseAzureSignalR(routes =>
-            {
-                routes.MapHub<DoorSensorNotificationsHub>("/doorSensorNotificationsHub");
-            });
-
             app.UseMvc();
         }
     }
