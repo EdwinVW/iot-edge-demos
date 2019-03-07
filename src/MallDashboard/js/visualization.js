@@ -189,5 +189,4 @@ var visualization = (function () {
         init: init,
         displayNotification: displayNotification
     };
-
 })();

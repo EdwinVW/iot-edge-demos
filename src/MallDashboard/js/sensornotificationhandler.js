@@ -1,22 +1,6 @@
 var notificationHandler = (function () {
 
     "use strict";
-    
-    var mallMapContext = document.getElementById('mallMap').getContext("2d");
-    mallMapContext.font = "10px Arial";
-    var customerGraphContext = document.getElementById('customerGraph').getContext("2d");
-    customerGraphContext.font = "10px Arial";
-    var totalGraphContext = document.getElementById("totalGraph").getContext("2d");
-
-    const sensorSize = 6;
-    const notificationSize = 5;
-    const sensorIdleColorOpen = "#00BBFF";
-    const sensorIdleColorClosed = "#001111";
-    const sensorInColor = "#00FF00";
-    const sensorOutColor = "#FF0000";
-    const sensorGraphLeft = 60;
-    const sensorGraphBarWidth = 15;
-    const sensorGraphBarGap = 12;
 
     var connection;
 
@@ -55,10 +39,12 @@ var notificationHandler = (function () {
     };
 
     function handleNotification(notification) {
+        var id = notification.DeviceId + "/" + notification.ModuleId + "/Sensor" + notification.SensorId;
+        console.info('Received notifcation from ' + id);
+
         visualization.displayNotification(notification);
     }
 
- 
     function start() {
         visualization.init();
         setupSignalR();
@@ -68,7 +54,6 @@ var notificationHandler = (function () {
     return {
         start: start
     };
-
 })();
 
 notificationHandler.start();
