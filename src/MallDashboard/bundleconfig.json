@@ -1,0 +1,16 @@
+[
+    {
+      "outputFileName": "wwwroot/js/dashboard.min.js",
+      "inputFiles": [
+        "js/doorsensors.js",
+        "js/secrets.js",
+        "js/visualization.js",
+        "js/sensornotificationhandler.js"
+      ],
+      "minify": {
+        "enabled": true,
+        "renameLocals": true
+      },
+      "sourceMap": false
+    }
+  ]
