@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Runtime.Loader;
 using System.Security.Cryptography.X509Certificates;
@@ -41,6 +42,9 @@ namespace DoorSensor
 
                 // attach a callback for updates to the module twin's desired properties
                 await moduleClient.SetDesiredPropertyUpdateCallbackAsync(OnDesiredPropertiesUpdate, null);
+
+                // attach a callback for direct method 'SetStoreStatus'
+                await moduleClient.SetMethodHandlerAsync("SetCustomerCount", OnSetCustomerCount, null);
 
                 // start message loop
                 Console.WriteLine($"{DateTime.Now.ToString("yyyyMMdd hh:mm:ss:ffffff")} - Starting message loop ...");
@@ -150,6 +154,24 @@ namespace DoorSensor
             }
 
             return Task.CompletedTask;
+        }
+
+        private static async Task<MethodResponse> OnSetCustomerCount(MethodRequest methodRequest, object userContext)
+        {
+            Console.WriteLine($"{DateTime.Now.ToString("yyyyMMdd hh:mm:ss:ffffff")} - Direct Method received. Payload: {methodRequest.DataAsJson}");
+
+            try
+            {
+                var payload = new { CustomerCount = 0 };
+                var input = JsonConvert.DeserializeAnonymousType(methodRequest.DataAsJson, payload);
+                await _customersSimulation.SetCustomerCountAsync(input.CustomerCount);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{DateTime.Now.ToString("yyyyMMdd hh:mm:ss:ffffff")} - {ex.ToString()}");
+                return new MethodResponse((int)HttpStatusCode.InternalServerError);
+            }
+            return new MethodResponse((int)HttpStatusCode.OK);
         }
     }
 }

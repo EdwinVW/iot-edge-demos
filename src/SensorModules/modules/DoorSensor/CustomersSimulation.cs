@@ -14,6 +14,8 @@ namespace DoorSensor
         private string _moduleId;
         private int _customerCount { get; set; } = 0;
 
+        private Mutex _mutex = new Mutex();
+
         private static Random _random = new Random();
 
         public CustomersSimulation(string deviceId, string moduleId)
@@ -24,49 +26,52 @@ namespace DoorSensor
 
         public async Task<DoorNotificationEvent> SimulateCustomerAsync(CancellationToken cancellationToken)
         {
-                // simulate delay between customer movements
-                await SimulateDelay(cancellationToken);
+            // simulate delay between customer movements
+            await SimulateDelay(cancellationToken);
 
-                // prevent event from being sent if properties have not been initialized (desired property)
-                if (!SensorId.HasValue || !MaxCapacity.HasValue)
-                {
-                    Console.WriteLine($"{DateTime.Now.ToString("yyyyMMdd hh:mm:ss:ffffff")} - Sensor Id and/or MaxCapacity not set. Skipping event publication.");
-                    return new DoorNotificationEvent { IsInitialized = false };
-                }
+            // prevent event from being sent if properties have not been initialized (desired property)
+            if (!SensorId.HasValue || !MaxCapacity.HasValue)
+            {
+                Console.WriteLine($"{DateTime.Now.ToString("yyyyMMdd hh:mm:ss:ffffff")} - Sensor Id and/or MaxCapacity not set. Skipping event publication.");
+                return new DoorNotificationEvent { IsInitialized = false };
+            }
 
-                Console.WriteLine($"{DateTime.Now.ToString("yyyyMMdd hh:mm:ss:ffffff")} - Customer entered. Sending message ...");
+            Console.WriteLine($"{DateTime.Now.ToString("yyyyMMdd hh:mm:ss:ffffff")} - Customer detected. Sending message ...");
 
-                // determine notificationtype
-                NotificationType? notificationType = DetermineNotificationType();
-                if (notificationType == null)
-                {
-                    return new DoorNotificationEvent { IsInitialized = false };
-                }
+            // determine notificationtype
+            NotificationType? notificationType = DetermineNotificationType();
+            if (notificationType == null)
+            {
+                return new DoorNotificationEvent { IsInitialized = false };
+            }
 
-                // update customercount
-                switch(notificationType)
-                {
-                    case NotificationType.CustomerEntered:
-                        _customerCount += 1;
-                        break;
-                    case NotificationType.CustomerExited:
-                        _customerCount -= 1;
-                        break;
-                }
-
-                //create event
-                DoorNotificationEvent e = new DoorNotificationEvent
-                {
-                    DeviceId = _deviceId,
-                    ModuleId = _moduleId,
-                    SensorId = SensorId.Value,
-                    MaxCapacity = MaxCapacity.Value,
-                    NotificationType = notificationType.Value,
-                    CustomerCount = _customerCount,
-                    StoreStatus = StoreStatus
-                };
+            //create event
+            DoorNotificationEvent e = new DoorNotificationEvent
+            {
+                DeviceId = _deviceId,
+                ModuleId = _moduleId,
+                SensorId = SensorId.Value,
+                MaxCapacity = MaxCapacity.Value,
+                NotificationType = notificationType.Value,
+                CustomerCount = _customerCount,
+                StoreStatus = StoreStatus
+            };
 
             return e;
+        }
+
+        public Task SetCustomerCountAsync(int newCustomerCount)
+        {
+            Console.WriteLine($"{DateTime.Now.ToString("yyyyMMdd hh:mm:ss:ffffff")} - Resetting CustomerCount to {newCustomerCount}");
+
+            if (MaxCapacity.HasValue)
+            {
+                _mutex.WaitOne();
+                _customerCount = newCustomerCount <= MaxCapacity.Value ? newCustomerCount : MaxCapacity.Value;
+                _mutex.ReleaseMutex();
+            }
+
+            return Task.CompletedTask;
         }
 
         private async Task SimulateDelay(CancellationToken cancellationToken)
@@ -85,6 +90,8 @@ namespace DoorSensor
 
         private NotificationType? DetermineNotificationType()
         {
+            _mutex.WaitOne();
+
             var notificationType = NotificationType.CustomerEntered;
             if (StoreStatus == StoreStatus.Closed)
             {
@@ -102,6 +109,20 @@ namespace DoorSensor
                     notificationType = NotificationType.CustomerExited;
                 }
             }
+
+            // update customercount
+            switch (notificationType)
+            {
+                case NotificationType.CustomerEntered:
+                    _customerCount += 1;
+                    break;
+                case NotificationType.CustomerExited:
+                    _customerCount -= 1;
+                    break;
+            }
+
+            _mutex.ReleaseMutex();
+
             return notificationType;
         }
     }
