@@ -20,7 +20,7 @@
         "quoteArgs": true
       },
       "sourceFileMap": {
-        "/app": "${workspaceFolder}/modules/DoorSensor"
+        "/app": "${workspaceFolder}/SensorModules/modules/DoorSensor"
       },
       "justMyCode": true
     },
@@ -28,9 +28,9 @@
       "name": "DoorSensor Local Debug (.NET Core)",
       "type": "coreclr",
       "request": "launch",
-      "program": "${workspaceRoot}/modules/DoorSensor/bin/Debug/netcoreapp2.1/DoorSensor.dll",
+      "program": "${workspaceRoot}/SensorModules/modules/DoorSensor/bin/Debug/netcoreapp2.1/DoorSensor.dll",
       "args": [],
-      "cwd": "${workspaceRoot}/modules/DoorSensor",
+      "cwd": "${workspaceRoot}/SensorModules/modules/DoorSensor",
       "internalConsoleOptions": "openOnSessionStart",
       "stopAtEntry": false,
       "console": "internalConsole",
