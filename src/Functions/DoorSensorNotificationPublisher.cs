@@ -1,18 +1,18 @@
-using IoTHubTrigger = Microsoft.Azure.WebJobs.EventHubTriggerAttribute;
-
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.EventHubs;
 using Microsoft.Extensions.Logging;
-using Microsoft.Azure.WebJobs.Extensions.SignalRService;
 using System.Threading.Tasks;
 using System.Text;
+
+using IoTHubTrigger = Microsoft.Azure.WebJobs.EventHubTriggerAttribute;
+using Microsoft.Azure.WebJobs.Extensions.SignalRService;
 
 namespace Functions
 {
     public class DoorSensorNotificationPublisher
     {
         [FunctionName("PublishDoorSensorNotification")]
-        public void Run(
+        public async Task Run(
             [IoTHubTrigger("messages/events", Connection = "IOTHUB_EVENTS", ConsumerGroup = "MallManagement")] EventData iotHubMessage,
             [SignalR(HubName = "DoorSensorNotificationsHub")] IAsyncCollector<SignalRMessage> signalRMessages,
             ILogger log)
@@ -21,15 +21,12 @@ namespace Functions
 
             log.LogInformation($"C# IoT Hub trigger function processed a message: {json}");
 
-
-            signalRMessages.AddAsync(
+            await signalRMessages.AddAsync(
                 new SignalRMessage
                 {
                     Target = "SendNotification",
                     Arguments = new[] { json }
-                }).Wait();
-
-            log.LogInformation($"Message broadcast using SignalR");
+                });
         }
     }
 }
