@@ -4,8 +4,8 @@ using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using System.Text;
 
-using IoTHubTrigger = Microsoft.Azure.WebJobs.EventHubTriggerAttribute;
-using Microsoft.Azure.WebJobs.Extensions.SignalRService;
+using IoTHubTrigger = Microsoft.Azure.WebJobs.EventHubTriggerAttribute; // IoT Hub trigger
+using Microsoft.Azure.WebJobs.Extensions.SignalRService; // SignalR binding
 
 namespace Functions
 {
