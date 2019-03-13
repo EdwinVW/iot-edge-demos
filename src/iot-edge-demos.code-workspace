@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "./Functions"
+		},
+		{
+			"path": "DoorSensorProperties"
 		}
 	],
 	"settings": {
