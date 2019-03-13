@@ -1,5 +1,8 @@
 namespace DoorSensor
 {
+    /// <summary>
+    /// Notification type: [CustomerEntered | CustomerExited | StoreClosed]
+    /// </summary>
     public enum NotificationType
     {
         CustomerEntered = 0,
@@ -7,6 +10,9 @@ namespace DoorSensor
         StoreClosed = 2
     }
 
+    /// <summary>
+    /// Status of the store: [Closed | Open]
+    /// </summary>
     public enum StoreStatus
     {
         Closed = 0,
