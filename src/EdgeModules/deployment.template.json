@@ -11,9 +11,9 @@
             "loggingOptions": "",
             "registryCredentials": {
               "ewiotedge": {
-                "username": "$CONTAINER_REGISTRY_USERNAME_ewiotedge",
-                "password": "$CONTAINER_REGISTRY_PASSWORD_ewiotedge",
-                "address": "ewiotedge.azurecr.io"
+                "username": "$CONTAINER_REGISTRY_USERNAME",
+                "password": "$CONTAINER_REGISTRY_PASSWORD",
+                "address": "$CONTAINER_REGISTRY_ADDRESS"
               }
             }
           }
