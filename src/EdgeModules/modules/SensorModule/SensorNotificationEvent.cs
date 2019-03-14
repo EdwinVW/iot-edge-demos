@@ -1,6 +1,6 @@
 namespace DoorSensor
 {  
-    public class DoorNotificationEvent
+    public class SensorNotification
     {
         public bool IsInitialized { get; set; } = true;
         public string DeviceId { get; set; }

@@ -73,7 +73,7 @@ namespace DoorSensor
             while (!cancellationToken.IsCancellationRequested)
             {
                 // simulate customer
-                DoorNotificationEvent e = await _customersSimulation.SimulateCustomerAsync(cancellationToken);
+                SensorNotification e = await _customersSimulation.SimulateCustomerAsync(cancellationToken);
 
                 // prevent event from being sent if module has not yet been initialized properly (desired property)
                 if (!e.IsInitialized)

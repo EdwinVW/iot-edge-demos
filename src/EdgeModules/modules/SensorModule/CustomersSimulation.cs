@@ -24,7 +24,7 @@ namespace DoorSensor
             _moduleId = moduleId;
         }
 
-        public async Task<DoorNotificationEvent> SimulateCustomerAsync(CancellationToken cancellationToken)
+        public async Task<SensorNotification> SimulateCustomerAsync(CancellationToken cancellationToken)
         {
             // simulate delay between customer movements
             await SimulateDelay(cancellationToken);
@@ -33,7 +33,7 @@ namespace DoorSensor
             if (!SensorId.HasValue || !MaxCapacity.HasValue)
             {
                 Console.WriteLine($"{DateTime.Now.ToString("yyyyMMdd hh:mm:ss:ffffff")} - Sensor Id and/or MaxCapacity not set. Skipping event publication.");
-                return new DoorNotificationEvent { IsInitialized = false };
+                return new SensorNotification { IsInitialized = false };
             }
 
             Console.WriteLine($"{DateTime.Now.ToString("yyyyMMdd hh:mm:ss:ffffff")} - Customer detected. Sending message ...");
@@ -42,11 +42,11 @@ namespace DoorSensor
             NotificationType? notificationType = DetermineNotificationType();
             if (notificationType == null)
             {
-                return new DoorNotificationEvent { IsInitialized = false };
+                return new SensorNotification { IsInitialized = false };
             }
 
             //create event
-            DoorNotificationEvent e = new DoorNotificationEvent
+            SensorNotification e = new SensorNotification
             {
                 DeviceId = _deviceId,
                 ModuleId = _moduleId,

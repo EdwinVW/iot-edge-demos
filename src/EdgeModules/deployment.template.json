@@ -57,133 +57,133 @@
           }
         },
         "modules": {
-          "DoorSensor0": {
+          "SensorModule00": {
             "version": "1.0",
             "type": "docker",
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "${MODULES.DoorSensor}",
+              "image": "${MODULES.SensorModule}",
               "createOptions": {}
             }
           },
-          "DoorSensor1": {
+          "SensorModule01": {
             "version": "1.0",
             "type": "docker",
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "${MODULES.DoorSensor}",
+              "image": "${MODULES.SensorModule}",
               "createOptions": {}
             }
           },
-          "DoorSensor2": {
+          "SensorModule02": {
             "version": "1.0",
             "type": "docker",
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "${MODULES.DoorSensor}",
+              "image": "${MODULES.SensorModule}",
               "createOptions": {}
             }
           },
-          "DoorSensor3": {
+          "SensorModule03": {
             "version": "1.0",
             "type": "docker",
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "${MODULES.DoorSensor}",
+              "image": "${MODULES.SensorModule}",
               "createOptions": {}
             }
           },
-          "DoorSensor4": {
+          "SensorModule04": {
             "version": "1.0",
             "type": "docker",
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "${MODULES.DoorSensor}",
+              "image": "${MODULES.SensorModule}",
               "createOptions": {}
             }
           },
-          "DoorSensor5": {
+          "SensorModule05": {
             "version": "1.0",
             "type": "docker",
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "${MODULES.DoorSensor}",
+              "image": "${MODULES.SensorModule}",
               "createOptions": {}
             }
           },
-          "DoorSensor6": {
+          "SensorModule06": {
             "version": "1.0",
             "type": "docker",
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "${MODULES.DoorSensor}",
+              "image": "${MODULES.SensorModule}",
               "createOptions": {}
             }
           },
-          "DoorSensor7": {
+          "SensorModule07": {
             "version": "1.0",
             "type": "docker",
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "${MODULES.DoorSensor}",
+              "image": "${MODULES.SensorModule}",
               "createOptions": {}
             }
           },
-          "DoorSensor8": {
+          "SensorModule08": {
             "version": "1.0",
             "type": "docker",
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "${MODULES.DoorSensor}",
+              "image": "${MODULES.SensorModule}",
               "createOptions": {}
             }
           },
-          "DoorSensor9": {
+          "SensorModule09": {
             "version": "1.0",
             "type": "docker",
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "${MODULES.DoorSensor}",
+              "image": "${MODULES.SensorModule}",
               "createOptions": {}
             }
           },
-          "DoorSensor10": {
+          "SensorModule10": {
             "version": "1.0",
             "type": "docker",
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "${MODULES.DoorSensor}",
+              "image": "${MODULES.SensorModule}",
               "createOptions": {}
             }
           },
-          "DoorSensor11": {
+          "SensorModule11": {
             "version": "1.0",
             "type": "docker",
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "${MODULES.DoorSensor}",
+              "image": "${MODULES.SensorModule}",
               "createOptions": {}
             }
           },
-          "DoorSensor12": {
+          "SensorModule12": {
             "version": "1.0",
             "type": "docker",
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "${MODULES.DoorSensor}",
+              "image": "${MODULES.SensorModule}",
               "createOptions": {}
             }
           }                                              

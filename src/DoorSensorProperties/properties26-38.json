@@ -1,89 +1,89 @@
 {
-  "DoorSensor0": {
+  "SensorModule00": {
     "properties.desired": {
       "SensorId": 26,
       "MaxCapacity": 8,
       "StoreStatus": "Open"
     }
   },
-  "DoorSensor1": {
+  "SensorModule01": {
     "properties.desired": {
       "SensorId": 27,
       "MaxCapacity": 15,
       "StoreStatus": "Open"
     }
   },
-  "DoorSensor2": {
+  "SensorModule02": {
     "properties.desired": {
       "SensorId": 28,
       "MaxCapacity": 8,
       "StoreStatus": "Open"
     }
   },
-  "DoorSensor3": {
+  "SensorModule03": {
     "properties.desired": {
       "SensorId": 29,
       "MaxCapacity": 10,
       "StoreStatus": "Open"
     }
   },
-  "DoorSensor4": {
+  "SensorModule04": {
     "properties.desired": {
       "SensorId": 30,
       "MaxCapacity": 10,
       "StoreStatus": "Open"
     }
   },
-  "DoorSensor5": {
+  "SensorModule05": {
     "properties.desired": {
       "SensorId": 31,
       "MaxCapacity": 5,
       "StoreStatus": "Open"
     }
   },
-  "DoorSensor6": {
+  "SensorModule06": {
     "properties.desired": {
       "SensorId": 32,
       "MaxCapacity": 8,
       "StoreStatus": "Open"
     }
   },
-  "DoorSensor7": {
+  "SensorModule07": {
     "properties.desired": {
       "SensorId": 33,
       "MaxCapacity": 5,
       "StoreStatus": "Open"
     }
   },
-  "DoorSensor8": {
+  "SensorModule08": {
     "properties.desired": {
       "SensorId": 34,
       "MaxCapacity": 15,
       "StoreStatus": "Open"
     }
   },
-  "DoorSensor9": {
+  "SensorModule09": {
     "properties.desired": {
       "SensorId": 35,
       "MaxCapacity": 10,
       "StoreStatus": "Open"
     }
   },
-  "DoorSensor10": {
+  "SensorModule10": {
     "properties.desired": {
       "SensorId": 36,
       "MaxCapacity": 12,
       "StoreStatus": "Open"
     }
   },
-  "DoorSensor11": {
+  "SensorModule11": {
     "properties.desired": {
       "SensorId": 37,
       "MaxCapacity": 12,
       "StoreStatus": "Open"
     }
   },
-  "DoorSensor12": {
+  "SensorModule12": {
     "properties.desired": {
       "SensorId": 38,
       "MaxCapacity": 35,
