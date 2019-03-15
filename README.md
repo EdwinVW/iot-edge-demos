@@ -170,7 +170,7 @@ Now you can add your Edge device to the IoT Hub (we will use the VM that created
 	- Click the *Run Shell Script* command.
 	- Type the following command in the *Linux Shell Script* window: `/etc/iotedge/configedge.sh "<connection-string>"` and execute it by clicking the *Run* button. 
 	- Do not close the blade and wait for the result to show in the result window.
-6. Go to VS Code and expand the modules folder of the newly created device in the *Azure IoT Hub Devices* explorer in the sidebar. Hit refresh a couple of times and after some time, you should see the *$edgeAgent* and *$edgeHub* modules up & running:
+6. Go to VS Code and expand the modules folder of the newly created device in the *Azure IoT Hub Devices* explorer in the sidebar. Hit refresh a couple of times and after some time, you should see the *$edgeAgent* and *$edgeHub* modules up & running:  
     ![](img/vs-code-add-iot-edge-device-online.png)
 
 #### 8. Deploy the sensor modules to your device
