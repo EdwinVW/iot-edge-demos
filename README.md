@@ -31,8 +31,8 @@ The solution works as follows:
 1. Every door-sensor is simulated by a single IoT Edge module running on an IoT Edge device. Every sensor simulates customers going in or out of the shop at random intervals.
 2. For every simulated customer, the Edge Module sends a message to the IoT Hub.
 3. The event triggers an Azure Function app that reacts to events in the default IoT Hub event-queue.
-4. The function app creates a message and sends it the SignalR hub.
-5. The Visual Dashboard web-app gets the necessary credentials to connect to the SignalR service by calling the SignalRInfo Azure Function and connects to the hub.
+4. The function app creates a message and sends it to the SignalR hub.
+5. The Visual Dashboard web-app gets the necessary credentials to connect to the SignalR service by calling the *SignalRInfo* Azure Function and connects to the hub.
 6. The dashboard starts receiving messages from the SignalR hub.
 7. With every incoming event, the dashboard updates the map and the graphs.
 
