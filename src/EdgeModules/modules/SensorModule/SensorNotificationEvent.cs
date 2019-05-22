@@ -1,4 +1,4 @@
-namespace DoorSensor
+namespace SensorModule
 {  
     public class SensorNotification
     {

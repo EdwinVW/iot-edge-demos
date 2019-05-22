@@ -1,4 +1,4 @@
-namespace DoorSensor
+namespace SensorModule
 {
     /// <summary>
     /// Notification type: [CustomerEntered | CustomerExited | StoreClosed]

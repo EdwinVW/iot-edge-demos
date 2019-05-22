@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DoorSensor
+namespace SensorModule
 {
     public class CustomersSimulation
     {
