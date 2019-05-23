@@ -27,7 +27,6 @@ namespace SensorModule
 
                 // initialize module
                 Console.WriteLine($"{DateTime.Now.ToString("yyyyMMdd hh:mm:ss:ffffff")} - Starting module initialization ...");
-
                 ModuleClient moduleClient = await InitAsync();
 
                 // read module twin's desired properties
@@ -67,10 +66,10 @@ namespace SensorModule
             while (!cancellationToken.IsCancellationRequested)
             {
                 // simulate customer
-                SensorNotification e = await _customersSimulation.SimulateCustomerAsync(cancellationToken);
+                SensorNotification notification = await _customersSimulation.SimulateCustomerAsync(cancellationToken);
 
                 // prevent event from being sent if module has not yet been initialized properly (desired property)
-                if (!e.IsInitialized)
+                if (!notification.IsInitialized)
                 {
                     Console.WriteLine($"{DateTime.Now.ToString("yyyyMMdd hh:mm:ss:ffffff")} - Sensor module not yet initialized properly. Skipping event publication.");
                     continue;
@@ -80,7 +79,7 @@ namespace SensorModule
                 {
                     Console.WriteLine($"{DateTime.Now.ToString("yyyyMMdd hh:mm:ss:ffffff")} - Customer entered. Sending message ...");
 
-                    string messageString = JsonConvert.SerializeObject(e);
+                    string messageString = JsonConvert.SerializeObject(notification);
                     var message = new Message(Encoding.UTF8.GetBytes(messageString));
 
                     // send event
