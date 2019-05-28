@@ -118,11 +118,11 @@ namespace SensorModule
         /// <summary>
         /// Handle updates on the desired properties.
         /// </summary>
-        static Task OnDesiredPropertiesUpdate(TwinCollection desiredProperties, object userContext)
+        static async Task OnDesiredPropertiesUpdate(TwinCollection desiredProperties, object userContext)
         {
             try
             {
-                Log($"Desired property change:\n{JsonConvert.SerializeObject(desiredProperties)}");
+                Log($"Desired property change:\n{desiredProperties.ToJson(Formatting.Indented)}");
 
                 if (desiredProperties["SensorId"] != null)
                 {
@@ -138,6 +138,21 @@ namespace SensorModule
                 {
                     _customersSimulation.StoreStatus = (StoreStatus)desiredProperties["StoreStatus"];
                 }
+
+                // report back desired properties
+                var moduleClient = (ModuleClient)userContext;
+                if (moduleClient != null)
+                {
+                    var reported = new
+                    {
+                        SensorId = _customersSimulation.SensorId,
+                        MaxCapacity = _customersSimulation.MaxCapacity,
+                        StoreStatus = _customersSimulation.StoreStatus.ToString()
+                    };
+                    var json = JsonConvert.SerializeObject(reported);
+                    var patch = new TwinCollection(json);
+                    await moduleClient.UpdateReportedPropertiesAsync(patch); // Just report back last desired property.
+                }
             }
             catch (AggregateException ex)
             {
@@ -150,8 +165,6 @@ namespace SensorModule
             {
                 Log($"Error when receiving desired property: {ex.Message}");
             }
-
-            return Task.CompletedTask;
         }
 
         /// <summary>

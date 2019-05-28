@@ -97,9 +97,12 @@ namespace SensorModule
             {
                 if (_customerCount == 0)
                 {
-                    return NotificationType.StoreClosed;
+                    notificationType = NotificationType.StoreClosed;
                 }
-                notificationType = NotificationType.CustomerExited;
+                else
+                {
+                    notificationType = NotificationType.CustomerExited;
+                }
             }
             else if (_customerCount > 0)
             {
