@@ -28,7 +28,7 @@ The visual dashboard is built using ASP.NET Core
 
 The solution works as follows:
 
-1. Every door-sensor is simulated by a single IoT Edge module running on an IoT Edge device. Every sensor simulates customers going in or out of the shop at random intervals.
+1. Every door-sensor is simulated by a single IoT Edge module running on an IoT Edge device. Every sensor simulates customers going in or out of the shop at random intervals. The 39 sensors are devided into 3 groups of 13 with each group running on a separate device.
 2. For every simulated customer, the Edge Module sends a message to the IoT Hub.
 3. The event triggers an Azure Function app that reacts to events in the default IoT Hub event-queue.
 4. The function app creates a message and sends it to the SignalR hub.
