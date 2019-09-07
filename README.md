@@ -186,9 +186,3 @@ Now you're going to deploy the sensor modules to the IoT Edge device:
 
 > If you start a device while your dashboard is not running, take into consideration that messages sent from the device are kept for some time in the IoT Hub's events queue. So when you start your dashboard after the device has been running for some time (even when it is currently not running), you will see all the messages from the queue coming in really fast. So always start your dashboard first and then start your device. 
 
-## Interacting with the edge modules
-If you were able to successfully run the solution, you can start interacting with the edge module:
-
-### Close a store
-
-### SetCustomerCount
