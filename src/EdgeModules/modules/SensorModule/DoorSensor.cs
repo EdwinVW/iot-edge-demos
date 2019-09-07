@@ -36,7 +36,7 @@ namespace SensorModule
                 // attach a callback for updates to the module twin's desired properties
                 await moduleClient.SetDesiredPropertyUpdateCallbackAsync(OnDesiredPropertiesUpdate, null);
 
-                // attach a callback for direct method 'SetStoreStatus'
+                // attach a callback for direct method 'SetCustomerCount'
                 await moduleClient.SetMethodHandlerAsync("SetCustomerCount", OnSetCustomerCount, null);
 
                 // start message loop

@@ -36,12 +36,10 @@ The solution works as follows:
 6. The dashboard starts receiving messages from the SignalR hub.
 7. With every incoming event, the dashboard updates the map and the graphs.
 
-## Getting started
-If you want to run this solution yourself, execute the steps in the getting started guide described below.
+## Running the solution
+If you want to run this solution yourself, execute the steps described below.
 
-**Please take into consideration that this getting started guide is a work in progress and a rough brain-dump of the steps I took to get the solution up & running. If you find anything that does not work as described (or is not clear), please create an issue or change it yourself and do a pull request (sharing is caring ;) ).**
-
-#### 1. Satisfy the prerequisites
+### 1. Satisfy the prerequisites
 1. Fork and clone this Git repository.
 2. Create an **Container Registry** in Azure. 
 	- Make sure you enable *Admin user-access* to the registry.
@@ -65,15 +63,18 @@ If you want to run this solution yourself, execute the steps in the getting star
 	- Choose *.NET* as the runtime-stack.
 7. Install the latest LTS version of the [.NET Core SDK](https://dotnet.microsoft.com/download).
 8. Install the prerequisites for VS Code as described in [this article](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-vs-code-develop-module). Only install the .NET / C# prerequisites.
-9. Install the VS Code extension for *Azure Functions*.
-10. Install Docker for Desktop.
+9. Install the VS Code extension for *Azure Functions* as described in [this article](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-function-vs-code).
 11. Open the `iot-edge-demos.code-workspace` file in the repository using Visual Studio Code.
+12. Make sure you are signed into your Azure subscription from Visual Studio Code so you can access your Azure resources:
+	- Press the short-cut key `Ctrl-Shift-P` to open the command-list.
+	- Type `Azure: Sign in` and select the command from the list.
+	- Login with your credentials.
 
 Once you have satisfied the prerequisites above, you can dive in and start the solution. Execute the following steps:
 
 > For all the steps I assume that you have opened the `iot-edge-demos.code-workspace` file in the repository using Visual Studio Code.
 
-#### 2. Deploy the Azure Function app
+### 2. Deploy the Azure Function app
 1. Open the Azure Portal and select the Function App you created earlier.
 2. Add 2 connection strings to the app settings:
 	- Click the *Application Settings* option:  
@@ -90,14 +91,10 @@ Once you have satisfied the prerequisites above, you can dive in and start the s
 	- Select your Function App.
 	- Check the output window for any errors.
 
-#### 3. Connect to your IoT Hub
+### 3. Connect to your IoT Hub
 In order to manage your IoT Hub from VS Code, you need to connect to it:
 
-1. Make sure you are signed into an Azure subscription from VS Code.
-	- Press the short-cut key `Ctrl-Shift-P` to open the command-list.
-	- Type `Azure: Sign in` and select the command from the list.
-	- Login with your credentials.
-2. Select your IoT Hub.
+1. Select your IoT Hub in Visual Studio Code.
 	- Press the short-cut key `Ctrl-Shift-P` to open the command-list.
 	- Type `IoT Hub: Select IoT Hub` and select the command from the list.
 	- Select the subscription that contains the IoT Hub you created earlier.
@@ -107,7 +104,7 @@ In order to manage your IoT Hub from VS Code, you need to connect to it:
 	- Select the *Open View...* option.
 	- Type `IoT` and select the `Azure IoT Hub Devices` view.		  
 
-#### 4. Build and push the IoT Edge module image
+### 4. Build and push the IoT Edge module image
 In this part you will build the IoT Edge solution and push the resulting module Docker image to your container registry:
  
 1. Expand the EdgeModules project in VS Code.
@@ -131,7 +128,7 @@ In this part you will build the IoT Edge solution and push the resulting module 
 	- If you see an error about not being able to contact the Docker daemon, your Docker for Desktop is probably not running (correctly). Start it (or restart it if it is running).
 7. Check out whether the image was pushed correctly by opening the container registry and checking whether there is a repository named `sensormodule` with an image in it named `1.0-<patform>`.
 
-#### 5. Configure the Dashboard web-app
+### 5. Configure the Dashboard web-app
 In order for the dashboard app to connect to the SignalR service, you need the service endpoint URL and a valid access token. The *SignalRInfo* function in the Azure Funtions app can be called over HTTP to retrieve this connection-information. To call this function, you need to authenticate with the function-key. You need to configure the web-app so it can authenticate to the function:   
 
 1. Expand the *MallDashboard* folder in VS Code.
@@ -144,7 +141,7 @@ In order for the dashboard app to connect to the SignalR service, you need the s
 		- The default function-key of the *SignalRInfo* function. You can get this key by opening the Function App in the Azure Portal, selecting the *SignalRInfo* function and clicking the *Manage* option:  
 		![](img/azure-portal-function-manage.png)
 
-#### 6. Start the dashboard
+### 6. Start the dashboard
 In order to see the telemetry from the sensor modules, you need to start the dashboard:
 
 1. Configure the web-app to be the start-up project:
@@ -155,7 +152,7 @@ In order to see the telemetry from the sensor modules, you need to start the das
 2. Click the start button or press F5.
 3. The web-app should start and automatically open an browser window. If this does not happen, open a browser and navigate to [https://localhost:5001](https://localhost:5001).
 
-#### 7. Add an edge device
+### 7. Add an edge device
 Now you can add your Edge device to the IoT Hub (we will use the VM that created in the prerequisites):
 
 1. Click the ellipses button of the *Azure IoT Hub Devices* explorer in the sidebar, and select *Create IoT Edge Device*:
@@ -173,11 +170,11 @@ Now you can add your Edge device to the IoT Hub (we will use the VM that created
 6. Go to VS Code and expand the modules folder of the newly created device in the *Azure IoT Hub Devices* explorer in the sidebar. Hit refresh a couple of times and after some time, you should see the *$edgeAgent* and *$edgeHub* modules up & running:  
     ![](img/vs-code-add-iot-edge-device-online.png)
 
-#### 8. Deploy the sensor modules to your device
+### 8. Deploy the sensor modules to your device
 Now you're going to deploy the sensor modules to the IoT Edge device:
 
 1. Make sure you have a *config* folder in the EdgeModules project with a *deployment.amd64.json* file. If not, make sure you have built and pushed your module image (see description above).
-2. Open the file *properties-012.json* in the DoorSensorProperties folder.
+2. Open the file *properties-012.json* in the *DoorSensorProperties* folder.
 3. Copy everything from this file except the outer most curly-braces.
 3. Open the *deployment.amd64.json* file in the *config* folder in the EdgeModules project.
 4. Paste the copied properties in the files below the properties for the *$edgeHub* module (don't forget to add a comma after the *$edgeHub* property block):  
@@ -185,7 +182,13 @@ Now you're going to deploy the sensor modules to the IoT Edge device:
 5. Save the file and right-click on it in the VS Code file explorer.
 6. Select the option *Create Deployment for Single Device*.
 7. Select the device you just added and check the output window for the results.
-8. After some time, you should see sensor telemetry coming in on the dashboard (see part 6).
+8. After some time, you should see sensor telemetry coming in on the dashboard.
 
 > If you start a device while your dashboard is not running, take into consideration that messages sent from the device are kept for some time in the IoT Hub's events queue. So when you start your dashboard after the device has been running for some time (even when it is currently not running), you will see all the messages from the queue coming in really fast. So always start your dashboard first and then start your device. 
 
+## Interacting with the edge modules
+If you were able to successfully run the solution, you can start interacting with the edge module:
+
+### Close a store
+
+### SetCustomerCount
