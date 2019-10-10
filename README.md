@@ -77,10 +77,11 @@ Once you have satisfied the prerequisites above, you can dive in and start the s
 ### 2. Deploy the Azure Function app
 1. Open the Azure Portal and select the Function App you created earlier.
 2. Add 2 connection strings to the app settings:
-	- Click the *Application Settings* option:  
+	- Click the *Configuration* option:  
       ![](img/azure-portal-function-app-settings.png)
 	- Add an application setting *AzureSignalRConnectionString* with as value the connection-string to the SignalR service you copied earlier.
 	- Add an application setting *IOTHUB_EVENTS* with as value the *Event Hub-compatible endpoint* connection-string you copied earlier.
+	- Remember to click *Save*.
 3. Configure CORS for your Function App:
 	- Open the Azure Portal, select your Function App and click the *CORS rules* option:  
       ![](img/azure-portal-function-cors-settings.png)
