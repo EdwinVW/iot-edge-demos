@@ -60,7 +60,7 @@ If you want to run this solution yourself, execute the steps described below.
 6. Create a **Function App** in Azure.
 	- Choose *Windows* as OS.
 	- Choose the *Consumption Plan* hosting plan.
-	- Choose *.NET* as the runtime-stack.
+	- Choose *.NET Core* as the runtime-stack.
 7. Install the latest LTS version of the [.NET Core SDK](https://dotnet.microsoft.com/download).
 8. Install the prerequisites for VS Code as described in [this article](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-vs-code-develop-module). Only install the .NET / C# prerequisites.
 9. Install the VS Code extension for *Azure Functions* as described in [this article](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-function-vs-code).
