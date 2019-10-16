@@ -40,14 +40,14 @@ The solution works as follows:
 If you want to run this solution yourself, execute the steps described below.
 
 ### 1. Satisfy the prerequisites
-1. Fork and clone this Git repository.
+1. Fork and clone this Git repository. 
+ 
+	> For step 2 - 6, don't wait until a step is copletely finished, but as soon as the service is deploying, go to the next step.   
 2. Create an **Container Registry** in Azure. 
 	- Make sure you enable *Admin user-access* to the registry.
 	- Choose the *Basic* SKU.
-	- Once the registry is created, copy the user-name and password for this registry and keep this for later.
 3. Create an **IoT Hub** in Azure.
 	- Make sure you choose the *F1: Free* tier to enable IoT Edge. If you want to be able to send more than 8000 messages per day, choose the *S1: Standard* tier.
-	- Once the IoT Hub is created, go to the *Built-in endpoints* blade for the hub and copy the *Event Hub-compatible endpoint* connection-string.
 4.  Create a **simulated edge device VM** in Azure. 
 	- Search *IoT Edge on Ubuntu* in the Azure Marketplace. You will find a template for VM with Ubuntu 16.04 LTS with the IoT Edge runtime pre-installed.
 	- Create a VM based on this template.
@@ -56,24 +56,30 @@ If you want to run this solution yourself, execute the steps described below.
 	- Choose the cheapest disk configuration and size possible.
 5. Create a **SignalR service** in Azure.
 	- Choose the *Free* pricing tier.
-	- Once the SignalR service is created, copy the connection-string for this service from the *Keys* blade and keep this for later.
 6. Create a **Function App** in Azure.
 	- Choose *Windows* as OS.
 	- Choose the *Consumption Plan* hosting plan.
 	- Choose *.NET Core* as the runtime-stack.
-7. Install Docker for desktop.
-8. Install the latest LTS version of the [.NET Core SDK](https://dotnet.microsoft.com/download).
-9. Install the prerequisites for VS Code as described in [this article](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-vs-code-develop-module). Only install the .NET / C# prerequisites.
-10. Install the VS Code extension for *Azure Functions* as described in [this article](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-function-vs-code).
-11. Open the `iot-edge-demos.code-workspace` file in the repository using Visual Studio Code.
-12. Make sure you are signed into your Azure subscription from Visual Studio Code so you can access your Azure resources:
+7. Collect the necessary secrets from the created Azure services and keep them somewhere for later.
+	- Open the Container Registry page, go to the *Access Keys* blade and copy the user-name and password for this registry.
+	- Open the IoT Hub page, go to the *Built-in endpoints* blade and copy the *Event Hub-compatible endpoint* connection-string.
+	- Open the SignalR page, go to the *Keys* blade and copy the connection-string.
+8. Install Docker for desktop.
+9. Install version 2.1 of the [.NET Core SDK](https://dotnet.microsoft.com/download/dotnet-core/2.1).
+10. Install [Visual Studio Code](https://code.visualstudio.com/download).
+11. Install the [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) for VS Code.
+12. Install the [Azure IoT Tools extension](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-tools) for VS Code.
+13. Install [version 2.x of the Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#v2).
+14. Install the [Azure Functions extensions for VS Code](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-function-vs-code#install-the-azure-functions-extension).
+15. Open the `iot-edge-demos.code-workspace` file in the repository using Visual Studio Code.
+16. Make sure you are signed into your Azure subscription from Visual Studio Code so you can access your Azure resources:
 	- Press the short-cut key `Ctrl-Shift-P` to open the command-list.
 	- Type `Azure: Sign in` and select the command from the list.
 	- Login with your credentials.
 
 Once you have satisfied the prerequisites above, you can dive in and start the solution. Execute the following steps:
 
-> For all the steps I assume that you have opened the `iot-edge-demos.code-workspace` file in the repository using Visual Studio Code.
+> For all the following steps I assume that you have opened the `iot-edge-demos.code-workspace` file in the repository using Visual Studio Code.
 
 ### 2. Deploy the Azure Function app
 1. Open the Azure Portal and select the Function App you created earlier.
