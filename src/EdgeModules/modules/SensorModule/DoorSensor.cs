@@ -83,7 +83,7 @@ namespace SensorModule
                     var message = new Message(Encoding.UTF8.GetBytes(messageString));
 
                     // send event
-                    await moduleClient.SendEventAsync("doorevents", message);
+                    await moduleClient.SendEventAsync("sensorOutput", message);
 
                     Log($"Message sent: {messageString}");
                 }
