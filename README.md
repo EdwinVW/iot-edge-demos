@@ -105,7 +105,7 @@ In order to manage your IoT Hub from VS Code, you need to connect to it:
 
 1. Select your IoT Hub in Visual Studio Code.
 	- Press the short-cut key `Ctrl-Shift-P` to open the command-list.
-	- Type `IoT Hub: Select IoT Hub` and select the command from the list.
+	- Type `Azure IoT Hub: Select IoT Hub` and select the command from the list.
 	- Select the subscription that contains the IoT Hub you created earlier.
 	- Select your IoT Hub.
 3. Display the *Azure IoT Hub Devices* explorer in the sidebar (if not already visible):
@@ -116,26 +116,28 @@ In order to manage your IoT Hub from VS Code, you need to connect to it:
 ### 4. Build and push the IoT Edge module image
 In this part you will build the IoT Edge solution and push the resulting module Docker image to your container registry:
  
-1. Expand the EdgeModules project in VS Code.
-2. Configure the container registry credentials:
+1. Make sure your Docker for Desktop is running.
+2. Expand the EdgeModules project in VS Code.
+3. Configure the container registry credentials:
 	- Rename the `.env.sample` file to `.env`.
 	- Open the file.
 	- Fill in the variables:
 		- The address of your container registry (e.g. mycr.azurecr.io)
 		- The user name for this registry.
 		- The password for this registry.
-3 Select the target platform for your device:
+4. Log-in Docker to the container registry by running the following command from the terminal: `docker login <your_acr>.azurecr.io`. Use the same user name and password from the `.env` file.
+5. In the `EdgeModules/modules/SensorModule/` directory, open the `module.json` file and update the value for `repository` with the name of your own Azure Container Registry, e.g. `mycr.azurecr.io/sensormodule`.
+6. Select the target platform for your device:
 	- Press the short-cut key `Ctrl-Shift-P` to open the command-list.
 	- Select command `IoT Edge: Set default Target Platform for Edge Solution`.
-	- Select the target platform (`arm32-v7` for a Raspberry Pi, `amd64` for a linux host and `windows-amd64` for a Windows host).
+	- Select the target platform `amd64` as we want to use the earlier deployed Linux VM as the Edge device. Alternatively, you can use `arm32v7` for a Raspberry Pi,  or `windows-amd64` for a Windows host.
 	- You can also see a shortcut in the status-bar of VS Code you can use to change the target platform:  
 	![](img/vs-code-target-platform.png)  
-4. Make sure your Docker for Desktop is running.
-5. Right click the `deployment.template.json` file and select the option `Build and Push IoT Edge Solution`.
-6. Check out the output window for any errors.
+6. Right click the `deployment.template.json` file and select the option `Build and Push IoT Edge Solution`.
+7. Check the output window for any errors.
 	- If you see an error about authentication, make sure you're logged into your container registry. You can do this by opening a terminal window and issuing the command `docker login <registry address>`. You will be prompted for a user name and password.
 	- If you see an error about not being able to contact the Docker daemon, your Docker for Desktop is probably not running (correctly). Start it (or restart it if it is running).
-7. Check out whether the image was pushed correctly by opening the container registry and checking whether there is a repository named `sensormodule` with an image in it named `1.0-<patform>`.
+8. Check out whether the image was pushed correctly by opening the container registry and checking whether there is a repository named `sensormodule` with an image in it named `1.4-<patform>`.
 
 ### 5. Configure the Dashboard web-app
 In order for the dashboard app to connect to the SignalR service, you need the service endpoint URL and a valid access token. The *SignalRInfo* function in the Azure Funtions app can be called over HTTP to retrieve this connection-information. To call this function, you need to authenticate with the function-key. You need to configure the web-app so it can authenticate to the function:   
@@ -162,7 +164,7 @@ In order to see the telemetry from the sensor modules, you need to start the das
 3. The web-app should start and automatically open an browser window. If this does not happen, open a browser and navigate to [https://localhost:5001](https://localhost:5001).
 
 ### 7. Add an edge device
-Now you can add your Edge device to the IoT Hub (we will use the VM that created in the prerequisites):
+Now you can add your Edge device to the IoT Hub (we will use the VM that you created in the prerequisites):
 
 1. Click the ellipses button of the *Azure IoT Hub Devices* explorer in the sidebar, and select *Create IoT Edge Device*:
    ![](img/vs-code-add-iot-edge-device.png)
@@ -176,7 +178,7 @@ Now you can add your Edge device to the IoT Hub (we will use the VM that created
 	- Click the *Run Shell Script* command.
 	- Type the following command in the *Linux Shell Script* window: `/etc/iotedge/configedge.sh "<connection-string>"` and execute it by clicking the *Run* button. 
 	- Do not close the blade and wait for the result to show in the result window.
-6. Go to VS Code and expand the modules folder of the newly created device in the *Azure IoT Hub Devices* explorer in the sidebar. Hit refresh a couple of times and after some time, you should see the *$edgeAgent* and *$edgeHub* modules up & running:  
+6. Go to VS Code and expand the modules folder of the newly created device in the *Azure IoT Hub Devices* explorer in the sidebar. Hit refresh a couple of times and after some time, you should see the *\$edgeAgent* and *\$edgeHub* modules up & running:  
     ![](img/vs-code-add-iot-edge-device-online.png)
 
 ### 8. Deploy the sensor modules to your device
@@ -186,7 +188,7 @@ Now you're going to deploy the sensor modules to the IoT Edge device:
 2. Open the file *properties-012.json* in the *DoorSensorProperties* folder.
 3. Copy everything from this file except the outer most curly-braces.
 3. Open the *deployment.amd64.json* file in the *config* folder in the EdgeModules project.
-4. Paste the copied properties in the files below the properties for the *$edgeHub* module (don't forget to add a comma after the *$edgeHub* property block):  
+4. Paste the copied properties in the files below the properties for the *\$edgeHub* module (don't forget to add a comma after the *\$edgeHub* property block):  
    ![](img/vs-code-deploy-add-sensor-properties.png)
 5. Save the file and right-click on it in the VS Code file explorer.
 6. Select the option *Create Deployment for Single Device*.
