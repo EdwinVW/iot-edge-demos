@@ -333,3 +333,4 @@ ASALocalRun/
 .localhistory/
 
 .env
+.DS_Store

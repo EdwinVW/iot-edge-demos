@@ -83,10 +83,11 @@ Once you have satisfied the prerequisites above, you can dive in and start the s
 	- Add an application setting *IOTHUB_EVENTS* with as value the *Event Hub-compatible endpoint* connection-string you copied earlier.
 	- Remember to click *Save*.
 3. Configure CORS for your Function App:
-	- Open the Azure Portal, select your Function App and click the *CORS rules* option:  
+	- In the Function App, select the *Platform features* tab and click the *CORS* link:  
       ![](img/azure-portal-function-cors-settings.png)
 	- Remove all the existing rules and add a new rule that allows `*`:  
 	  ![](img/azure-portal-function-cors.png)
+    - Click *Save*.
 4. Deploy the function app from VS Code:
 	- Right click the *Functions* folder in VS Code and select the `Deploy to Function App...` option.
 	- Select your Function App.
