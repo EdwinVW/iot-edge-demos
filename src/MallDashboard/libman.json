@@ -12,31 +12,31 @@
     },
     {
       "library": "chart.js@2.8.0",
-      "destination": "wwwroot\\lib\\chart.js"
+      "destination": "wwwroot/lib/chart.js"
     },
     {
       "library": "chartjs-plugin-streaming@1.8.0",
-      "destination": "wwwroot\\lib\\chartjs-plugin-streaming"
+      "destination": "wwwroot/lib/chartjs-plugin-streaming"
     },
     {
       "library": "moment@2.24.0",
-      "destination": "wwwroot\\lib\\moment"
+      "destination": "wwwroot/lib/moment"
     },
     {
       "library": "bootstrap@4.3.1",
-      "destination": "wwwroot\\lib\\bootstrap"
+      "destination": "wwwroot/lib/bootstrap"
     },
     {
       "library": "jquery@3.3.1",
-      "destination": "wwwroot\\lib\\jquery"
+      "destination": "wwwroot/lib/jquery"
     },
     {
       "library": "jquery-validation@1.19.1",
-      "destination": "wwwroot\\lib\\jquery-validation"
+      "destination": "wwwroot/lib/jquery-validation"
     },
     {
       "library": "jquery-validation-unobtrusive@3.2.11",
-      "destination": "wwwroot\\lib\\jquery-validation-unobtrusive"
+      "destination": "wwwroot/lib/jquery-validation-unobtrusive"
     }
   ]
 }
