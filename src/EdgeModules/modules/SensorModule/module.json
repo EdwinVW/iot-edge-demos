@@ -4,7 +4,7 @@
     "image": {
         "repository": "ewiotedge.azurecr.io/sensormodule",
         "tag": {
-            "version": "1.4",
+            "version": "1.5",
             "platforms": {
                 "amd64": "./Dockerfile.amd64", 
                 "amd64.debug": "./Dockerfile.amd64.debug",
