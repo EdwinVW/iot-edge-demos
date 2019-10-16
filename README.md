@@ -137,7 +137,7 @@ In this part you will build the IoT Edge solution and push the resulting module 
 7. Check the output window for any errors.
 	- If you see an error about authentication, make sure you're logged into your container registry. You can do this by opening a terminal window and issuing the command `docker login <registry address>`. You will be prompted for a user name and password.
 	- If you see an error about not being able to contact the Docker daemon, your Docker for Desktop is probably not running (correctly). Start it (or restart it if it is running).
-8. Check out whether the image was pushed correctly by opening the container registry and checking whether there is a repository named `sensormodule` with an image in it named `1.4-<patform>`.
+8. Check out whether the image was pushed correctly by opening the container registry and checking whether there is a repository named `sensormodule` with an image in it tagged with the correct version (as specified in the `module.json`) and the selected platform (e.g. `1.5-amd64`).
 
 ### 5. Configure the Dashboard web-app
 In order for the dashboard app to connect to the SignalR service, you need the service endpoint URL and a valid access token. The *SignalRInfo* function in the Azure Funtions app can be called over HTTP to retrieve this connection-information. To call this function, you need to authenticate with the function-key. You need to configure the web-app so it can authenticate to the function:   
