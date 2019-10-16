@@ -60,19 +60,24 @@ If you want to run this solution yourself, execute the steps described below.
 	- Choose *Windows* as OS.
 	- Choose the *Consumption Plan* hosting plan.
 	- Choose *.NET Core* as the runtime-stack.
-7. Collect the necessary secrets from the created Azure services and keep them somewhere for later.
+7. Add a consumer-group to the built-in events endpoint of the **IoT Hub** you just created:
+	- Open the *Built-in endpoints* blade of the IoT Hub.
+	- Click in the *Create new consumer group* text-box and type the name of the group: `mallmanagement`.
+	- Leave the text-box (press `tab`) in order to submit the change.    
+	![](img/azure-portal-iothub-consumergroup.png)  
+8. Collect the necessary secrets from the created Azure services and keep them somewhere for later.
 	- Open the Container Registry page, go to the *Access Keys* blade and copy the user-name and password for this registry.
 	- Open the IoT Hub page, go to the *Built-in endpoints* blade and copy the *Event Hub-compatible endpoint* connection-string.
 	- Open the SignalR page, go to the *Keys* blade and copy the connection-string.
-8. Install Docker for desktop.
-9. Install current version of the [.NET Core SDK](https://dotnet.microsoft.com/download/dotnet-core).
-10. Install [Visual Studio Code](https://code.visualstudio.com/download).
-11. Install the [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) for VS Code.
-12. Install the [Azure IoT Tools extension](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-tools) for VS Code.
-13. Install [version 2.x of the Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#v2).
-14. Install the [Azure Functions extensions for VS Code](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-function-vs-code#install-the-azure-functions-extension).
-15. Open the `iot-edge-demos.code-workspace` file in the repository using Visual Studio Code.
-16. Make sure you are signed into your Azure subscription from Visual Studio Code so you can access your Azure resources:
+9. Install Docker for desktop.
+10. Install current version of the [.NET Core SDK](https://dotnet.microsoft.com/download/dotnet-core).
+11. Install [Visual Studio Code](https://code.visualstudio.com/download).
+12. Install the [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) for VS Code.
+13. Install the [Azure IoT Tools extension](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-tools) for VS Code.
+14. Install [version 2.x of the Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#v2).
+15. Install the [Azure Functions extensions for VS Code](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-function-vs-code#install-the-azure-functions-extension).
+16. Open the `iot-edge-demos.code-workspace` file in the repository using Visual Studio Code.
+17. Make sure you are signed into your Azure subscription from Visual Studio Code so you can access your Azure resources:
 	- Press the short-cut key `Ctrl-Shift-P` to open the command-list.
 	- Type `Azure: Sign in` and select the command from the list.
 	- Login with your credentials.
