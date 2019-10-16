@@ -61,9 +61,10 @@ If you want to run this solution yourself, execute the steps described below.
 	- Choose *Windows* as OS.
 	- Choose the *Consumption Plan* hosting plan.
 	- Choose *.NET Core* as the runtime-stack.
-7. Install the latest LTS version of the [.NET Core SDK](https://dotnet.microsoft.com/download).
-8. Install the prerequisites for VS Code as described in [this article](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-vs-code-develop-module). Only install the .NET / C# prerequisites.
-9. Install the VS Code extension for *Azure Functions* as described in [this article](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-function-vs-code).
+7. Install Docker for desktop.
+8. Install the latest LTS version of the [.NET Core SDK](https://dotnet.microsoft.com/download).
+9. Install the prerequisites for VS Code as described in [this article](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-vs-code-develop-module). Only install the .NET / C# prerequisites.
+10. Install the VS Code extension for *Azure Functions* as described in [this article](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-function-vs-code).
 11. Open the `iot-edge-demos.code-workspace` file in the repository using Visual Studio Code.
 12. Make sure you are signed into your Azure subscription from Visual Studio Code so you can access your Azure resources:
 	- Press the short-cut key `Ctrl-Shift-P` to open the command-list.
