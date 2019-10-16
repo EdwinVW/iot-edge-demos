@@ -60,7 +60,7 @@ If you want to run this solution yourself, execute the steps described below.
 6. Create a **Function App** in Azure.
 	- Choose *Windows* as OS.
 	- Choose the *Consumption Plan* hosting plan.
-	- Choose *.NET* as the runtime-stack.
+	- Choose *.NET Core* as the runtime-stack.
 7. Install the latest LTS version of the [.NET Core SDK](https://dotnet.microsoft.com/download).
 8. Install the prerequisites for VS Code as described in [this article](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-vs-code-develop-module). Only install the .NET / C# prerequisites.
 9. Install the VS Code extension for *Azure Functions* as described in [this article](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-function-vs-code).
@@ -77,15 +77,17 @@ Once you have satisfied the prerequisites above, you can dive in and start the s
 ### 2. Deploy the Azure Function app
 1. Open the Azure Portal and select the Function App you created earlier.
 2. Add 2 connection strings to the app settings:
-	- Click the *Application Settings* option:  
+	- Click the *Configuration* option:  
       ![](img/azure-portal-function-app-settings.png)
 	- Add an application setting *AzureSignalRConnectionString* with as value the connection-string to the SignalR service you copied earlier.
 	- Add an application setting *IOTHUB_EVENTS* with as value the *Event Hub-compatible endpoint* connection-string you copied earlier.
+	- Remember to click *Save*.
 3. Configure CORS for your Function App:
-	- Open the Azure Portal, select your Function App and click the *CORS rules* option:  
+	- In the Function App, select the *Platform features* tab and click the *CORS* link:  
       ![](img/azure-portal-function-cors-settings.png)
 	- Remove all the existing rules and add a new rule that allows `*`:  
 	  ![](img/azure-portal-function-cors.png)
+    - Click *Save*.
 4. Deploy the function app from VS Code:
 	- Right click the *Functions* folder in VS Code and select the `Deploy to Function App...` option.
 	- Select your Function App.
