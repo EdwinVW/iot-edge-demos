@@ -47,7 +47,7 @@ If you want to run this solution yourself, execute the steps described below.
 	- Make sure you enable *Admin user-access* to the registry.
 	- Choose the *Basic* SKU.
 3. Create an **IoT Hub** in Azure.
-	- Make sure you choose the *F1: Free* tier to enable IoT Edge. If you want to be able to send more than 8000 messages per day, choose the *S1: Standard* tier.
+	- Choose the *S1: Standard* tier to enable the IoT Edge feature. You can also choose the *F1: Free* tier, but this allows you to send a maximum of 8000 messages per day. For this workshop, this is probably enough. But if you wantexperiment some more with the solution, choose the *S1* tier.
 4.  Create a **simulated edge device VM** in Azure. 
 	- Search *IoT Edge on Ubuntu* in the Azure Marketplace. You will find a template for VM with Ubuntu 16.04 LTS with the IoT Edge runtime pre-installed.
 	- Create a VM based on this template.
@@ -56,6 +56,7 @@ If you want to run this solution yourself, execute the steps described below.
 	- Choose the cheapest disk configuration and size possible.
 5. Create a **SignalR service** in Azure.
 	- Choose the *Free* pricing tier.
+	- Choose the *Serverless* service mode.
 6. Create a **Function App** in Azure.
 	- Choose *Windows* as OS.
 	- Choose the *Consumption Plan* hosting plan.
