@@ -28,7 +28,7 @@
       "name": "DoorSensor Local Debug (.NET Core)",
       "type": "coreclr",
       "request": "launch",
-      "program": "${workspaceRoot}/modules/SensorModule/bin/Debug/netcoreapp2.1/SensorModule.dll",
+      "program": "${workspaceRoot}/modules/SensorModule/bin/Debug/netcoreapp3.0/SensorModule.dll",
       "args": [],
       "cwd": "${workspaceRoot}/modules/SensorModule",
       "internalConsoleOptions": "openOnSessionStart",
