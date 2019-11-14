@@ -13,6 +13,7 @@ namespace SensorModule
     public static class DoorSensor
     {
         private static CustomersSimulation _customersSimulation;
+        private static ModuleClient _moduleClient;
 
         public static async Task<int> RunAsync()
         {
@@ -27,24 +28,24 @@ namespace SensorModule
 
                 // initialize module
                 Log("Starting module initialization ...");
-                ModuleClient moduleClient = await InitAsync();
+                _moduleClient = await InitAsync();
 
                 // read module twin's desired properties
-                var moduleTwin = await moduleClient.GetTwinAsync();
-                await OnDesiredPropertiesUpdate(moduleTwin.Properties.Desired, moduleClient);
+                var moduleTwin = await _moduleClient.GetTwinAsync();
+                await OnDesiredPropertiesUpdate(moduleTwin.Properties.Desired, null);
 
                 // attach a callback for updates to the module twin's desired properties
-                await moduleClient.SetDesiredPropertyUpdateCallbackAsync(OnDesiredPropertiesUpdate, null);
+                await _moduleClient.SetDesiredPropertyUpdateCallbackAsync(OnDesiredPropertiesUpdate, null);
 
                 // attach a callback for direct method 'SetCustomerCount'
-                await moduleClient.SetMethodHandlerAsync("SetCustomerCount", OnSetCustomerCount, null);
+                await _moduleClient.SetMethodHandlerAsync("SetCustomerCount", OnSetCustomerCount, null);
 
                 // start message loop
                 Log("Starting message loop ...");
                 var cts = new CancellationTokenSource();
                 AssemblyLoadContext.Default.Unloading += (ctx) => cts.Cancel();
                 Console.CancelKeyPress += (sender, cpe) => cts.Cancel();
-                await MessageLoopAsync(moduleClient, cts.Token);
+                await MessageLoopAsync(cts.Token);
             }
             catch (Exception ex)
             {
@@ -58,9 +59,8 @@ namespace SensorModule
         /// <summary>
         /// Message loop that simulates people entering the store.
         /// </summary>
-        /// <param name="moduleClient">The IoT Edge communication client.</param>
         /// <param name="cancellationToken">The cancellation,token for gracefully handling cancellation.</param>
-        private static async Task MessageLoopAsync(ModuleClient moduleClient, CancellationToken cancellationToken)
+        private static async Task MessageLoopAsync(CancellationToken cancellationToken)
         {
             int retryCount = 0;
             while (!cancellationToken.IsCancellationRequested)
@@ -83,7 +83,7 @@ namespace SensorModule
                     var message = new Message(Encoding.UTF8.GetBytes(messageString));
 
                     // send event
-                    await moduleClient.SendEventAsync("sensorOutput", message);
+                    await _moduleClient.SendEventAsync("sensorOutput", message);
 
                     Log($"Message sent: {messageString}");
                 }
@@ -140,19 +140,15 @@ namespace SensorModule
                 }
 
                 // report back desired properties
-                var moduleClient = (ModuleClient)userContext;
-                if (moduleClient != null)
+                var reported = new
                 {
-                    var reported = new
-                    {
-                        SensorId = _customersSimulation.SensorId,
-                        MaxCapacity = _customersSimulation.MaxCapacity,
-                        StoreStatus = _customersSimulation.StoreStatus.ToString()
-                    };
-                    var json = JsonConvert.SerializeObject(reported);
-                    var patch = new TwinCollection(json);
-                    await moduleClient.UpdateReportedPropertiesAsync(patch); // Just report back last desired property.
-                }
+                    SensorId = _customersSimulation.SensorId,
+                    MaxCapacity = _customersSimulation.MaxCapacity,
+                    StoreStatus = _customersSimulation.StoreStatus.ToString()
+                };
+                var json = JsonConvert.SerializeObject(reported);
+                var patch = new TwinCollection(json);
+                await _moduleClient.UpdateReportedPropertiesAsync(patch); // Just report back last desired property.
             }
             catch (AggregateException ex)
             {
