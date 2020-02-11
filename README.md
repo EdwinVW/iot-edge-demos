@@ -71,7 +71,7 @@ If you want to run this solution yourself, execute the steps described below.
 	- Open the IoT Hub page, go to the *Built-in endpoints* blade and copy the *Event Hub-compatible endpoint* connection-string.
 	- Open the SignalR page, go to the *Keys* blade and copy the connection-string.
 9. Install Docker for desktop.
-10. Install current version of the [.NET Core SDK](https://dotnet.microsoft.com/download/dotnet-core).
+10. Install LTS version of the [.NET Core SDK](https://dotnet.microsoft.com/download/dotnet-core).
 11. Install [Visual Studio Code](https://code.visualstudio.com/download).
 12. Install the [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) for VS Code.
 13. Install the [Azure IoT Tools extension](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-tools) for VS Code.
