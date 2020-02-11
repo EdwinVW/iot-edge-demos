@@ -58,9 +58,9 @@ If you want to run this solution yourself, execute the steps described below.
 	- Choose the *Free* pricing tier.
 	- Choose the *Serverless* Service Mode.
 6. Create a **Function App** in Azure.
+	- Choose *.NET Core* as the runtime-stack.
 	- Choose *Windows* as OS.
 	- Choose the *Consumption Plan* hosting plan.
-	- Choose *.NET Core* as the runtime-stack.
 7. Add a consumer-group to the built-in events endpoint of the **IoT Hub** you just created:
 	- Open the *Built-in endpoints* blade of the IoT Hub.
 	- Click in the *Create new consumer group* text-box and type the name of the group: `mallmanagement`.
